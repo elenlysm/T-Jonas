@@ -72,6 +72,58 @@
             </div>
         </div>
 
+        <?php
+        session_start(); // Inicia a sessão para armazenar os dados do usuário logado
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "*";
+
+        // Estabelece a conexão com o banco de dados
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+        // Verifica a conexão
+        if ($conn->connect_error) {
+            die("Conexão falhou: " . $conn->connect_error);
+        }
+
+        // Processa o formulário quando enviado
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $email = mysqli_real_escape_string($conn, $_POST['email']);
+            $senha = mysqli_real_escape_string($conn, $_POST['senha']);
+
+            // Consulta o banco de dados para verificar se o usuário e senha estão corretos
+            $sql = "SELECT * FROM user WHERE email = '$email' AND senha = '$senha'";
+            $result = mysqli_query($conn, $sql);
+
+            // Verifica se a consulta foi bem-sucedida
+            if ($result) {
+                // Verifica se a consulta retornou algum resultado
+                if (mysqli_num_rows($result) == 1) {
+                    // O usuário foi autenticado com sucesso
+                    $_SESSION['email'] = $email; // Armazena o nome de usuário na sessão
+
+                    // Redireciona conforme o email
+                    if ($email == '*tilabs@einsteinlimeira.com.br*') {
+                        header("Location: cadastro-usuario.php");
+                    } else {
+                        header("Location: reservas.php");
+                    }
+                    exit; // Certifica-se de que o script para aqui
+                } else {
+                    echo '<script>alert("Login ou senha incorretos!");</script>';
+                }
+            } else {
+                // Exibe uma mensagem de erro se a consulta falhar
+                echo '<script>alert("Erro na consulta: ' . mysqli_error($conn) . '");</script>';
+            }
+        }
+
+        // Fecha a conexão com o banco de dados
+        mysqli_close($conn);
+        ?>
+
     </main>
 
     <!-- Rodapé com a informação de desenvolvimento -->
