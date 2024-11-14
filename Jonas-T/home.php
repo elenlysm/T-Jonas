@@ -4,6 +4,7 @@
 <head>
     <!-- Definindo o conjunto de caracteres para UTF-8, adequado para português -->
     <meta charset="UTF-8">
+
     <!-- Tornando o site responsivo em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link para o arquivo de estilos (CSS) local -->
@@ -66,7 +67,7 @@
                             <button type="submit" id="btn" class="btn btn-light w-100">ENTRAR</button>
                         </div>
                         <!-- Link para a página de cadastro (necessário adicionar funcionalidade) -->
-                        <button type="button" class="btn btn-link w-100">Cadastre-se</button>
+                        <button type="button" class="btn btn-link w-100"><a href="cad-user.php">Cadastre-se</a></button>
                     </form>
                 </div>
             </div>
@@ -83,12 +84,12 @@
         // Estabelece a conexão com o banco de dados
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-        // Verifica a conexão
+        // Verifica se a conexão foi bem-sucedida
         if ($conn->connect_error) {
             die("Conexão falhou: " . $conn->connect_error);
         }
 
-        // Processa o formulário quando enviado
+        // Verifica se o formulário foi enviado
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $senha = mysqli_real_escape_string($conn, $_POST['senha']);
