@@ -57,7 +57,7 @@
                             <div class="input-group">
                                 <input type="password" class="input form-control" id="senha" name="senha">
                                 <!-- Botão para mostrar/ocultar a senha -->
-                                <button type="button btn-light" class="btn btn-outline-secondary" aria-label="Mostrar senha" id="mostrar-senha">
+                                <button type="button btn-light" class="btn btn-outline-secondary" aria-label="Mostrar senha" id="mostrar-senha" onclick="toggleSenha()">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
                             </div>
@@ -134,6 +134,22 @@
             <p class="m-0">DESENVOLVIDO POR BBE®</p>
         </div>
     </footer>
+
+    <script>
+        function toggleSenha() {
+            const senhaInput = document.getElementById('senha');
+            const senhaIcon = document.getElementById('senha-icon');
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                senhaIcon.classList.remove('bi-eye-slash');
+                senhaIcon.classList.add('bi-eye');
+            } else {
+                senhaInput.type = 'password';
+                senhaIcon.classList.remove('bi-eye');
+                senhaIcon.classList.add('bi-eye-slash');
+            }
+        }
+    </script>
 </body>
 
 </html>

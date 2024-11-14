@@ -10,7 +10,7 @@
 /* Estilização do corpo da página */
 body {
     /* Aplicando a cor de fundo primária */
-    background-color: var(--primary-bg-color);
+    background-color: var(--primary-bg-color) !important;
 }
 
 /* Estilização do cabeçalho */
@@ -46,7 +46,10 @@ img.sala {
     object-fit: cover;
 
     /* Bordas arredondadas no canto superior direito */
-    border-top-right-radius: 2rem;
+    border-top-right-radius: 15rem;
+
+    /* Bordas arredondadas no canto superior esquerdo */
+    border-top-left-radius: 2rem;
 
     /* Bordas arredondadas no canto inferior esquerdo */
     border-bottom-left-radius: 2rem;
@@ -59,6 +62,8 @@ img.sala {
 main.corpo {
     /* Aplicando a cor de fundo secundária */
     background-color: var(--secondary-bg-color);
+
+    box-shadow: -1rem -2rem #78acc1;
 
     /* Espaçamento interno */
     padding: 2rem;
