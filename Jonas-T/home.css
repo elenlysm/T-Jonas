@@ -1,0 +1,47 @@
+:root {
+    --primary-bg-color: #DEDEEA;
+    --secondary-bg-color: #8488B5;
+}
+
+body {
+    background-color: var(--primary-bg-color);
+}
+
+header {
+    background-color: var(--primary-bg-color);
+}
+
+img.logo {
+    width: 30rem;
+    border-radius: 1rem;
+}
+
+div.logo {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+img.sala {
+    height: 100%; /* Ocupar a altura total da coluna */
+    object-fit: cover; /* Ajustar a imagem ao container sem distorção */
+    border-top-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    background-color: var(--secondary-bg-color);
+}
+
+main.corpo {
+    background-color: var(--secondary-bg-color);
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 3rem;
+}
+
+form {
+    background-color: var(--secondary-bg-color);
+    text-align: left;
+    padding: 5rem;
+}
+
+footer .rod02 {
+    width: fit-content;
+}
