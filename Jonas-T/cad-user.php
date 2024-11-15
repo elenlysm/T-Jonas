@@ -76,10 +76,6 @@
     }
     ?>
 
-    <div class="text-center mt-4">
-        <button class="btn btn-danger" type="button" onclick="redirecionarParaLogin()">Sair</button>
-    </div>
-
     <script>
         function redirecionarParaLogin() {
             window.location.href = "cadastro-usuario.php";

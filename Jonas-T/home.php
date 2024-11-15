@@ -40,12 +40,12 @@
                 <div class="col-12 col-md-7 p-0 d-flex flex-column justify-content-center align-items-center">
                     <!-- Texto de boas-vindas e explicação sobre o sistema -->
                     <div class="mb-4 p-3 text-center welcome-text w-100">
-                        <h3>Seu Portal de Reserva de Salas de Reunião!</h3>
-                        <p>Organize suas reuniões de forma rápida e prática. Nosso sistema oferece:</p>
-                        <p>Faça login para garantir o espaço ideal para sua equipe!</p>
+                        <h3>Seu Portal que Reserva Salas de Reunião!</h3>
+                        <h5>Organize suas reuniões de forma rápida e prática.</h5>
+                        <p>Faça o login e garanta o espaço ideal para sua equipe!</p>
                     </div>
                     <!-- Formulário de login -->
-                    <form method="post" class="form w-100">
+                    <form method="post" class="form w-80">
                         <!-- Campo de input para e-mail (login) -->
                         <div class="mb-2">
                             <label for="login" class="label p-2">LOGIN</label>
@@ -57,7 +57,7 @@
                             <div class="input-group">
                                 <input type="password" class="input form-control" id="senha" name="senha">
                                 <!-- Botão para mostrar/ocultar a senha -->
-                                <button type="button btn-light" class="btn btn-outline-secondary" aria-label="Mostrar senha" id="mostrar-senha" onclick="toggleSenha()">
+                                <button type="button" class="btn btn-outline-secondary" aria-label="Mostrar senha" id="mostrar-senha" onclick="toggleSenha(event)">
                                     <i class="bi bi-eye-slash"></i>
                                 </button>
                             </div>
@@ -136,7 +136,9 @@
     </footer>
 
     <script>
-        function toggleSenha() {
+        function toggleSenha(event) {
+            // Impede que o botão provoque o envio do formulário
+            event.preventDefault(); 
             const senhaInput = document.getElementById('senha');
             const senhaIcon = document.getElementById('senha-icon');
             if (senhaInput.type === 'password') {

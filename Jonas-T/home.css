@@ -78,13 +78,21 @@ main.corpo {
 /* Estilização do formulário */
 form {
     /* Cor de fundo secundária para o formulário */
-    background-color: var(--secondary-bg-color);
+    background-color: var(--primary-bg-color);
+
+    box-shadow: -1rem -1rem #78acc1;
 
     /* Alinhamento do texto à esquerda */
     text-align: left;
 
     /* Espaçamento interno generoso */
     padding: 5rem;
+
+    border-radius: 3rem;
+}
+
+button{
+    background-color: #98bfd0;
 }
 
 /* Ajuste de largura do elemento no footer */
