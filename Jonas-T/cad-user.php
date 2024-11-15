@@ -7,81 +7,80 @@
 
     <!-- Tornando o site responsivo em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Link para o arquivo de estilos (CSS) local -->
-    <link rel="stylesheet" href="cad-user.css">
-
+    <link rel="stylesheet" href="home.css">
     <!-- Link para o Bootstrap 5 (framework CSS) que oferece uma estrutura de layout responsiva e estilizada -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-
     <!-- Link para os ícones do Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
     <!-- Título da página exibido na aba do navegador -->
-    <title>Cadastre-se</title>
+    <title>Reúne Aqui</title>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">CADASTRO</h2>
-        <form method="post" action="">
-            <div class="mb-3">
-                <label for="nome" class="form-label">NOME</label>
-                <input type="text" class="form-control" id="nome" name="nome" required>
+
+    <!-- Cabeçalho com a logo do site -->
+    <header class="container">
+        <div class="logo">
+            <!-- Imagem da logo com responsividade -->
+            <img src="img/logo.png" alt="Logotipo do Reúne Aqui" class="logo img-fluid">
+        </div>
+    </header>
+
+    <main class="corpo">
+        <!-- Container principal centralizado -->
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+            <!-- Layout com duas colunas (imagem e formulário de login) -->
+            <div class="row container-fluid">
+                <!-- Formulário de login -->
+                <form action="cadastro-usuario.php" method="POST">
+                    <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($row['id_user']); ?>">
+
+                    <!-- Campo de input para nome (login) -->
+                    <div class="mb-2">
+                        <label for="nome" class="form-label">NOME</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+
+                    <!-- Campo de input para email -->
+                    <div class="mb-2">
+                        <label for="email" class="form-label">E-MAIL</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+
+                    <!-- Campo de input para senha -->
+                    <div class="mb-2">
+                        <label for="senha" class="form-label">SENHA</label>
+                        <input type="password" class="form-control" id="senha" name="senha" required>
+                    </div>
+
+                    <!-- Campo de input para senha -->
+                    <div class="mb-2">
+                        <label for="senha" class="form-label">CONFIRME SUA SENHA</label>
+                        <input type="password" class="form-control" id="senha" name="senha" required>
+                    </div>
+
+                    <!-- Botão de envio do formulário -->
+                    <div class="mb-2">
+                        <button type="submit" class="btn btn-secondary" name="salvar">Salvar</button>
+                    </div>
             </div>
-            <div class="mb-3">
-                <label for="email" class="form-label">E-MAIL</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
-            <div class="mb-3">
-                <label for="senha" class="form-label">Senha:</label>
-                <input type="password" class="form-control" id="senha" name="senha" required>
-            </div>
-            <div class="d-grid">
-                <button type="submit" name="action" class="btn btn-warning">Registrar</button>
-            </div>
-        </form>
-    </div>
+            </form>
+            
+        </div>
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "labs";
+        </div>
 
-        // Cria a conexão
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+    </main>
 
-        // Verifica a conexão
-        if (!$conn) {
-            die("Conexão falhou: " . mysqli_connect_error());
-        }
-
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-
-        // Insere os dados na tabela
-        $sql = "INSERT INTO user (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
-
-        if (mysqli_query($conn, $sql)) {
-            echo '<script>alert("Usuário registrado com sucesso!"); window.location.href = "cadastro-usuario.php";</script>';
-        } else {
-            echo '<script>alert("Erro ao registrar usuário. Tente novamente. ' . mysqli_error($conn) . '");</script>';
-        }
-
-        // Fecha a conexão
-        mysqli_close($conn);
-    }
-    ?>
-
-    <script>
-        function redirecionarParaLogin() {
-            window.location.href = "cadastro-usuario.php";
-        }
-    </script>
-
+    <!-- Rodapé com a informação de desenvolvimento -->
+    <footer class="rodape mt-5 py-3 text-black">
+        <div class="container text-center">
+            <!-- Texto do rodapé -->
+            <p class="m-0">DESENVOLVIDO POR BBE®</p>
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

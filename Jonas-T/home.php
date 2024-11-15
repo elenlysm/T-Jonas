@@ -134,11 +134,11 @@
             <p class="m-0">DESENVOLVIDO POR BBE®</p>
         </div>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function toggleSenha(event) {
             // Impede que o botão provoque o envio do formulário
-            event.preventDefault(); 
+            event.preventDefault();
             const senhaInput = document.getElementById('senha');
             const senhaIcon = document.getElementById('senha-icon');
             if (senhaInput.type === 'password') {
