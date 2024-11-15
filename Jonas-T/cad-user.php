@@ -33,42 +33,47 @@
 
             <!-- Layout com duas colunas (imagem e formulário de login) -->
             <div class="row container-fluid">
-                <!-- Formulário de login -->
-                <form action="cadastro-usuario.php" method="POST">
-                    <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($row['id_user']); ?>">
 
-                    <!-- Campo de input para nome (login) -->
-                    <div class="mb-2">
-                        <label for="nome" class="form-label">NOME</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
-                    </div>
+                <!-- Texto de cadastro -->
+                <div class="mb-4 p-3 text-center welcome-text w-100">
+                    <h3>CADASTRO</h3>
 
-                    <!-- Campo de input para email -->
-                    <div class="mb-2">
-                        <label for="email" class="form-label">E-MAIL</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
+                    <!-- Formulário de login -->
+                    <form action="cadastro-usuario.php" method="POST">
+                        <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($row['id_user']); ?>">
 
-                    <!-- Campo de input para senha -->
-                    <div class="mb-2">
-                        <label for="senha" class="form-label">SENHA</label>
-                        <input type="password" class="form-control" id="senha" name="senha" required>
-                    </div>
+                        <!-- Campo de input para nome (login) -->
+                        <div class="mb-2">
+                            <label for="nome" class="form-label">NOME</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
 
-                    <!-- Campo de input para senha -->
-                    <div class="mb-2">
-                        <label for="senha" class="form-label">CONFIRME SUA SENHA</label>
-                        <input type="password" class="form-control" id="senha" name="senha" required>
-                    </div>
+                        <!-- Campo de input para email -->
+                        <div class="mb-2">
+                            <label for="email" class="form-label">E-MAIL</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
 
-                    <!-- Botão de envio do formulário -->
-                    <div class="mb-2">
-                        <button type="submit" class="btn btn-secondary" name="salvar">Salvar</button>
-                    </div>
+                        <!-- Campo de input para senha -->
+                        <div class="mb-2">
+                            <label for="senha" class="form-label">SENHA</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+
+                        <!-- Campo de input para senha -->
+                        <div class="mb-2">
+                            <label for="senha" class="form-label">CONFIRME SUA SENHA</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+
+                        <!-- Botão de envio do formulário -->
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-secondary" name="salvar">Salvar</button>
+                        </div>
+                </div>
+                </form>
+
             </div>
-            </form>
-            
-        </div>
 
         </div>
 
