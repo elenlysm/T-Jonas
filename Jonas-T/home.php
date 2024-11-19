@@ -20,7 +20,6 @@
     <title>Reúne Aqui</title>
 </head>
 
-<>
     <!-- Cabeçalho com a logo do site -->
     <header class="container">
         <div class="logo">
