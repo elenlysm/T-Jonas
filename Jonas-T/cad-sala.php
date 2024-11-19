@@ -16,3 +16,67 @@
     <!-- Título da página exibido na aba do navegador -->
     <title>Cadastro de Salas</title>
 </head>
+
+<main class="corpo">
+        <!-- Container principal centralizado -->
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+            <!-- Layout com duas colunas (imagem e formulário de login) -->
+            <div class="row container-fluid">
+
+                <!-- Texto de cadastro -->
+                <div class="mb-4 p-3 text-center welcome-text w-100">
+                    <h3>CADASTRO DE SALAS</h3>
+
+                    <!-- Formulário de login -->
+                    <form action="cadastro-salas.php" method="POST">
+                        <input type="hidden" name="id_user" value="<?php echo htmlspecialchars($row['id_user']); ?>">
+
+                        <!-- Campo de input para nome (login) -->
+                        <div class="mb-2">
+                            <label for="nome" class="form-label">NOME</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+
+                        <!-- Campo de input para email -->
+                        <div class="mb-2">
+                            <label for="email" class="form-label">E-MAIL</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+
+                        <!-- Campo de input para senha -->
+                        <div class="mb-2">
+                            <label for="senha" class="form-label">SENHA</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+
+                        <!-- Campo de input para senha -->
+                        <div class="mb-2">
+                            <label for="senha" class="form-label">CONFIRME SUA SENHA</label>
+                            <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+
+                        <!-- Botão de envio do formulário -->
+                        <div class="mb-2">
+                            <button type="submit" class="btn btn-secondary" name="salvar">Salvar</button>
+                        </div>
+                </div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Rodapé com a informação de desenvolvimento -->
+    <footer class="rodape mt-5 py-3 text-black">
+        <div class="container text-center">
+            <!-- Texto do rodapé -->
+            <p class="m-0">DESENVOLVIDO POR BBE®</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -13,11 +13,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Link para os ícones do Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- cdn script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Título da página exibido na aba do navegador -->
     <title>Reúne Aqui</title>
 </head>
 
-<body>
+<>
     <!-- Cabeçalho com a logo do site -->
     <header class="container">
         <div class="logo">
@@ -66,11 +69,51 @@
                         <div class="mb-2">
                             <button type="submit" id="btn" class="btn btn-light w-100">ENTRAR</button>
                         </div>
-                        <!-- Link para a página de cadastro (necessário adicionar funcionalidade) -->
-                        <button type="button" class="btn btn-link w-100"><a href="cad-user.php">Cadastre-se</a></button>
+                        <!-- Link para a página de cadastro (modal) -->
+                        <button type="button" class="btn btn-link w-100" data-bs-toggle="modal" data-bs-target="#caduModal">Cadastre-se</button>
                     </form>
                 </div>
             </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="caduModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">CADASTRE-SE</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <form action="cadastro-usuario.php" method="POST">
+                            <div class="mb-2">
+                                <label for="nome" class="form-label">NOME</label>
+                                <input type="text" class="form-control" id="cad-nome" name="nome" required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="email" class="form-label">E-MAIL</label>
+                                <input type="email" class="form-control" id="cad-email" name="email" required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="senha" class="form-label">SENHA</label>
+                                <input type="password" class="form-control" id="cad-senha" name="senha" required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="confirma-senha" class="form-label">CONFIRME SUA SENHA</label>
+                                <input type="password" class="form-control" id="confirma-senha" name="confirma_senha" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Concluir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        </div>
         </div>
 
         <?php
@@ -134,7 +177,6 @@
             <p class="m-0">DESENVOLVIDO POR BBE®</p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function toggleSenha(event) {
             // Impede que o botão provoque o envio do formulário
@@ -150,8 +192,17 @@
                 senhaIcon.classList.remove('bi-eye');
                 senhaIcon.classList.add('bi-eye-slash');
             }
+            document.querySelector('form').addEventListener('submit', function(event) {
+                const senha = document.getElementById('cad-senha').value;
+                const confirmaSenha = document.getElementById('confirma-senha').value;
+                if (senha !== confirmaSenha) {
+                    event.preventDefault();
+                    alert("As senhas não coincidem!");
+                }
+            });
         }
     </script>
-</body>
+
+    </body>
 
 </html>
