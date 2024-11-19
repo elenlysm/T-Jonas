@@ -2,38 +2,46 @@
 <html lang="pt-br">
 
 <head>
-    <!-- Definindo o conjunto de caracteres para UTF-8, adequado para português -->
+    <!-- Define o conjunto de caracteres como UTF-8 -->
     <meta charset="UTF-8">
 
-    <!-- Tornando o site responsivo em dispositivos móveis -->
+    <!-- Garante que a página será responsiva em dispositivos móveis -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link para o arquivo de estilos (CSS) local -->
+
+    <!-- Link para o arquivo CSS local que personaliza o estilo da página -->
     <link rel="stylesheet" href="home.css">
-    <!-- Link para o Bootstrap 5 (framework CSS) que oferece uma estrutura de layout responsiva e estilizada -->
+
+    <!-- Importa o Bootstrap 5 (framework CSS para design responsivo e moderno) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- Link para os ícones do Bootstrap -->
+
+    <!-- Importa os ícones do Bootstrap para uso em botões e elementos visuais -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- cdn script -->
+
+    <!-- Script do Bootstrap para ativar funcionalidades como modais e dropdowns -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Título da página exibido na aba do navegador -->
+    <!-- Define o título da página que aparecerá na aba do navegador -->
     <title>Reúne Aqui</title>
 </head>
 
-    <!-- Cabeçalho com a logo do site -->
-    <header class="container">
-        <div class="logo">
-            <!-- Imagem da logo com responsividade -->
-            <img src="img/logo.png" alt="Logotipo do Reúne Aqui" class="logo img-fluid">
-        </div>
-    </header>
+<!-- Cabeçalho com o logotipo -->
+<header class="container">
+    <div class="logo">
+        <!-- Exibe a imagem da logo do site -->
+        <img src="img/logo.png" alt="Logotipo do Reúne Aqui" class="logo img-fluid">
+    </div>
+</header>
+
+<!-- Corpo principal da página -->
+
+<body>
+
 
     <main class="corpo">
-        <!-- Container principal centralizado -->
+        <!-- Cria um container flexível que centraliza o conteúdo vertical e horizontalmente -->
         <div class="container d-flex justify-content-center align-items-center min-vh-100">
-            <!-- Layout com duas colunas (imagem e formulário de login) -->
             <div class="row container-fluid">
-                <!-- Coluna com a imagem da sala -->
+                <!-- Coluna para exibir uma imagem descritiva -->
                 <div class="col-12 col-md-5 p-0 d-flex justify-content-center align-items-stretch">
                     <!-- Imagem representando a sala -->
                     <img src="img/sla-reune.jpg" alt="Imagem da sala do Reúne Aqui" class="sala img-thumbnail img-fluid">
@@ -68,24 +76,24 @@
                         <div class="mb-2">
                             <button type="submit" id="btn" class="btn btn-light w-100">ENTRAR</button>
                         </div>
-                        <!-- Link para a página de cadastro (modal) -->
+                        <!-- Botão que abre o modal de cadastro -->
                         <button type="button" class="btn btn-link w-100" data-bs-toggle="modal" data-bs-target="#caduModal">Cadastre-se</button>
                     </form>
                 </div>
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal para cadastro de novos usuários -->
         <div class="modal fade" id="caduModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <!-- Modal header -->
+                    <!-- Cabeçalho do modal -->
                     <div class="modal-header">
                         <h4 class="modal-title">CADASTRE-SE</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
 
-                    <!-- Modal body -->
+                    <!-- Corpo do modal com o formulário de cadastro -->
                     <div class="modal-body">
                         <form action="cadastro-usuario.php" method="POST">
                             <div class="mb-2">
@@ -104,15 +112,12 @@
                                 <label for="confirma-senha" class="form-label">CONFIRME SUA SENHA</label>
                                 <input type="password" class="form-control" id="confirma-senha" name="confirma_senha" required>
                             </div>
+                            <!-- Botão para concluir o cadastro -->
                             <button type="submit" class="btn btn-primary w-100">Concluir</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-
-        </div>
-        </div>
         </div>
 
         <?php
@@ -176,6 +181,8 @@
             <p class="m-0">DESENVOLVIDO POR BBE®</p>
         </div>
     </footer>
+
+    <!-- Script para alternar a exibição da senha e validar os campos -->
     <script>
         function toggleSenha(event) {
             // Impede que o botão provoque o envio do formulário
@@ -202,6 +209,6 @@
         }
     </script>
 
-    </body>
+</body>
 
 </html>

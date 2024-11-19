@@ -75,6 +75,10 @@ main.corpo {
     border-radius: 3rem;
 }
 
+table{
+    background-color: var(--primary-bg-color);
+}
+
 /* Estilização do formulário */
 form {
     /* Cor de fundo secundária para o formulário */
