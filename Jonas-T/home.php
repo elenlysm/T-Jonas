@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -113,7 +117,7 @@
                                 <input type="password" class="form-control" id="confirma-senha" name="senha" required>
                             </div>
                             <!-- Botão para concluir o cadastro -->
-                            <button type="submit" class="btn btn-primary w-100">Concluir</button>
+                            <button type="submit" class="btn btn-primary w-100" name="salvar">Concluir</button>
                         </form>
                     </div>
                 </div>
@@ -121,54 +125,45 @@
         </div>
 
         <?php
-        session_start(); // Inicia a sessão para armazenar os dados do usuário logado
-
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "*";
+        $dbname = "salas";
 
-        // Estabelece a conexão com o banco de dados
+        // Conexão com o banco
         $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-        // Verifica se a conexão foi bem-sucedida
-        if ($conn->connect_error) {
-            die("Conexão falhou: " . $conn->connect_error);
+        if (!$conn) {
+            die("Conexão falhou: " . mysqli_connect_error());
         }
 
-        // Verifica se o formulário foi enviado
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $email = mysqli_real_escape_string($conn, $_POST['email']);
             $senha = mysqli_real_escape_string($conn, $_POST['senha']);
 
-            // Consulta o banco de dados para verificar se o usuário e senha estão corretos
-            $sql = "SELECT * FROM user WHERE email = '$email' AND senha = '$senha'";
+            $sql = "SELECT * FROM user WHERE TRIM(email) = '$email'";
             $result = mysqli_query($conn, $sql);
 
-            // Verifica se a consulta foi bem-sucedida
-            if ($result) {
-                // Verifica se a consulta retornou algum resultado
-                if (mysqli_num_rows($result) == 1) {
-                    // O usuário foi autenticado com sucesso
-                    $_SESSION['email'] = $email; // Armazena o nome de usuário na sessão
+            if ($result && mysqli_num_rows($result) == 1) {
+                $user = mysqli_fetch_assoc($result);
 
-                    // Redireciona conforme o email
-                    if ($email == '*admReunaAqui@gmail.com*') {
+                if ($senha === $user['senha']) { // Substitua por password_verify() se usar hash
+                    $_SESSION['email'] = $email;
+
+                    if ($email == 'admReunaAqui@gmail.com') {
                         header("Location: todas-reservas.php");
                     } else {
                         header("Location: reservas.php");
                     }
-                    exit; // Certifica-se de que o script para aqui
+                    exit;
                 } else {
                     echo '<script>alert("Login ou senha incorretos!");</script>';
                 }
             } else {
-                // Exibe uma mensagem de erro se a consulta falhar
-                echo '<script>alert("Erro na consulta: ' . mysqli_error($conn) . '");</script>';
+                echo '<script>alert("Login ou senha incorretos!");</script>';
             }
         }
 
-        // Fecha a conexão com o banco de dados
         mysqli_close($conn);
         ?>
 

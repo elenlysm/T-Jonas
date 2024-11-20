@@ -66,9 +66,10 @@ CREATE TABLE `reservas` (
 
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
-  `nome` char(30) NOT NULL,
-  `email` char(70) NOT NULL,
-  `senha` char(15) NOT NULL
+  `nome` VARCHAR(30) NOT NULL,
+  `email` VARCHAR (70) UNIQUE NOT NULL,
+  `senha` VARCHAR (15) NOT NULL
+  'created_at' TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

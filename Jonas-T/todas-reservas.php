@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <!-- Define o conjunto de caracteres como UTF-8 -->
     <meta charset="UTF-8">
