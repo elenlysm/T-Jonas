@@ -110,7 +110,7 @@
                             </div>
                             <div class="mb-2">
                                 <label for="confirma-senha" class="form-label">CONFIRME SUA SENHA</label>
-                                <input type="password" class="form-control" id="confirma-senha" name="confirma_senha" required>
+                                <input type="password" class="form-control" id="confirma-senha" name="senha" required>
                             </div>
                             <!-- Botão para concluir o cadastro -->
                             <button type="submit" class="btn btn-primary w-100">Concluir</button>
@@ -153,8 +153,8 @@
                     $_SESSION['email'] = $email; // Armazena o nome de usuário na sessão
 
                     // Redireciona conforme o email
-                    if ($email == '*tilabs@einsteinlimeira.com.br*') {
-                        header("Location: cadastro-usuario.php");
+                    if ($email == '*admReunaAqui@gmail.com*') {
+                        header("Location: todas-reservas.php");
                     } else {
                         header("Location: reservas.php");
                     }

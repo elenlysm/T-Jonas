@@ -1,13 +1,13 @@
 <?php
-session_start(); 
+session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "labs";
+$dbname = "sala";
 
 // Cria a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
-    
+
 // Verifica a conexão
 if ($conn->connect_error) {
     die("Conexão falhou: " . $conn->connect_error);
@@ -17,28 +17,28 @@ if ($conn->connect_error) {
 $resultdisp = null;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['disp'])) {
-    $qtdalunos = $conn->real_escape_string($_POST['qtdalunos']);
+    $qtdalunos = $conn->real_escape_string($_POST['qtdlugares']);
     $datareserva = $conn->real_escape_string($_POST['datareserva']);
     $horarioinicial = $conn->real_escape_string($_POST['horarioinicial']);
     $horariofinal = $conn->real_escape_string($_POST['horariofinal']);
 
     // Consulta para selecionar reservas
-    $sql = "SELECT LAB.* FROM LAB WHERE LAB.num_computadores >= $qtdalunos AND 
-    (SELECT COUNT(1) FROM reservas as r WHERE r.ID_LAB = LAB.ID_LAB AND r.datareserva = '$datareserva' AND 
+    $sql = "SELECT SALA.* FROM SALA WHERE SALA.num_act >= $qtdlugares AND 
+    (SELECT COUNT(1) FROM reservas as r WHERE r.ID_SALA = SALA.ID_SALA AND r.datareserva = '$datareserva' AND 
     ('$horarioinicial' BETWEEN r.horarioinicial and r.horariofinal OR '$horariofinal' BETWEEN r.horarioinicial and r.horariofinal ) ) = 0;";
     $resultdisp = $conn->query($sql);
 
-    $_SESSION["qtdalunos"] = $qtdalunos;
+    $_SESSION["qtdlugares"] = $qtdlugares;
     $_SESSION["datareserva"] = $datareserva;
     $_SESSION["horarioinicial"] = $horarioinicial;
     $_SESSION["horariofinal"] = $horariofinal;
 }
 
-$email = $_SESSION["email"]; 
+$email = $_SESSION["email"];
 
-$sql="SELECT lab.numero as numero, DATE_FORMAT(re.datareserva, '%d/%m/%Y') as datareserva, 
+$sql = "SELECT sala.numero as numero, DATE_FORMAT(re.datareserva, '%d/%m/%Y') as datareserva, 
 CONCAT(DATE_FORMAT(re.horarioinicial, '%H:%i'), ' às ', DATE_FORMAT(re.horariofinal, '%H:%i')) as horario 
-FROM lab 
+FROM sala 
 JOIN reservas as re ON re.id_lab = lab.id_lab 
 WHERE re.id_user = (SELECT u.id_user FROM user as u WHERE u.email = '$email');";
 
@@ -91,8 +91,8 @@ $resultreservas = $conn->query($sql);
                     <h5 class="text-center mb-3">Reserve um laboratório</h5>
                     <form action="reservas.php" method="POST">
                         <div class="mb-3">
-                            <label for="qtdacento" class="form-label">Insira a quantidade de acentos necessários:</label>
-                            <input type="text" class="form-control" name="qtdacento" required>
+                            <label for="qtdlugares" class="form-label">Insira a quantidade de acentos necessários:</label>
+                            <input type="text" class="form-control" name="qtdlugares" required>
                         </div>
                         <div class="mb-3">
                             <label for="datareserva" class="form-label">Data:</label>
@@ -123,22 +123,23 @@ $resultreservas = $conn->query($sql);
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if($resultdisp != null){?>
-                                <?php  while ($row = $resultdisp->fetch_assoc()) {?>
-                                <tr>
-                                    <td>
-                                        <?= $row['numero'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $row['softwares'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $row['num_computadores'] ?>
-                                    </td>
-                                    <td><a href="criarreserva.php?id_lab=<?= $row['id_lab'] ?>"
-                                            name="Reservar">Reservar</a></td>
-                                </tr>
-                                <?php } } ?>
+                                <?php if ($resultdisp != null) { ?>
+                                    <?php while ($row = $resultdisp->fetch_assoc()) { ?>
+                                        <tr>
+                                            <td>
+                                                <?= $row['numero'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['softwares'] ?>
+                                            </td>
+                                            <td>
+                                                <?= $row['num_act'] ?>
+                                            </td>
+                                            <td><a href="criarreserva.php?id_sala=<?= $row['id_sala'] ?>"
+                                                    name="Reservar">Reservar</a></td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -154,20 +155,21 @@ $resultreservas = $conn->query($sql);
                                     <th>Horário</th>
                                 </tr>
                             </thead>
-                            <?php if($resultreservas != null){?>
-                            <?php  while ($row = $resultreservas->fetch_assoc()) {?>
-                            <tr>
-                                <td>
-                                    <?= $row['numero'] ?>
-                                </td>
-                                <td>
-                                    <?= $row['datareserva'] ?>
-                                </td>
-                                <td>
-                                    <?= $row['horario'] ?>
-                                </td>
-                            </tr>
-                            <?php } } ?>
+                            <?php if ($resultreservas != null) { ?>
+                                <?php while ($row = $resultreservas->fetch_assoc()) { ?>
+                                    <tr>
+                                        <td>
+                                            <?= $row['numero'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['datareserva'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $row['horario'] ?>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } ?>
                         </table>
                     </div>
                 </div>
@@ -196,8 +198,8 @@ $resultreservas = $conn->query($sql);
                 <div class="modal-body">
                     <form action="cadastro-salas.php" method="POST">
                         <div class="mb-2">
-                            <label for="id" class="form-label">N° do laboratório:</label>
-                            <input type="text" class="form-control" id="numero" name="numero" required>
+                            <label for="id" class="form-label">numero da Sala reservada:</label>
+                            <input type="text" class="form-control" id="numero" name="numsala" required>
                         </div>
                         <div class="mb-2">
                             <label for="softwares" class="form-label">Softwares</label>
@@ -220,32 +222,6 @@ $resultreservas = $conn->query($sql);
     </div>
 </footer>
 
-<!-- Script para alternar a exibição da senha e validar os campos -->
-<script>
-    function toggleSenha(event) {
-        // Impede que o botão provoque o envio do formulário
-        event.preventDefault();
-        const senhaInput = document.getElementById('senha');
-        const senhaIcon = document.getElementById('senha-icon');
-        if (senhaInput.type === 'password') {
-            senhaInput.type = 'text';
-            senhaIcon.classList.remove('bi-eye-slash');
-            senhaIcon.classList.add('bi-eye');
-        } else {
-            senhaInput.type = 'password';
-            senhaIcon.classList.remove('bi-eye');
-            senhaIcon.classList.add('bi-eye-slash');
-        }
-        document.querySelector('form').addEventListener('submit', function (event) {
-            const senha = document.getElementById('cad-senha').value;
-            const confirmaSenha = document.getElementById('confirma-senha').value;
-            if (senha !== confirmaSenha) {
-                event.preventDefault();
-                alert("As senhas não coincidem!");
-            }
-        });
-    }
-</script>
 </body>
 
 </html>

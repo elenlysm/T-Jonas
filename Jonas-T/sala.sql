@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `sala` (
   `id_sala` int(11) NOT NULL,
   `numsala` int(3) NOT NULL,
-  `nact` int(3) NOT NULL
+  `num_act` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
