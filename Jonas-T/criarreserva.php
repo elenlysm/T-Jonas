@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "labs";
+$dbname = "sala";
 
 // Cria a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -17,19 +17,19 @@ if ($conn->connect_error) {
 
 // Armazena o email de usuário na sessão
 $email = $_SESSION["email"]; 
-$id_lab = $_GET["id_lab"]; 
-$qtdalunos = $_SESSION["qtdalunos"];
+$id_sala = $_GET["id_sala"]; 
+$qtdlugares = $_SESSION["qtdlugares"];
 $datareserva = $_SESSION["datareserva"];
 $horarioinicial = $_SESSION["horarioinicial"];
 $horariofinal = $_SESSION["horariofinal"];
 
 // Prepare a declaração SQL para inserção
 $stmt = $conn->prepare("INSERT INTO reservas 
-(id_user, id_lab, qtdalunos , datareserva, horarioinicial, horariofinal) 
+(id_user, id_sala, qtdlugares , datareserva, horarioinicial, horariofinal) 
 VALUES ((select u.id_user from user as u where u.email = ?), ?, ?, ?, ?, ?)");
 
 // Vincular parâmetros e executar a declaração
-$stmt->bind_param("siisss", $email, $id_lab, $qtdalunos, $datareserva, $horarioinicial, $horariofinal);
+$stmt->bind_param("siisss", $email, $id_sala, $qtdlugares, $datareserva, $horarioinicial, $horariofinal);
 
 // Executar a inserção
 if ($stmt->execute()) {

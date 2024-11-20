@@ -18,30 +18,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `labs`
+-- Banco de dados: `salas`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `lab`
+-- Estrutura para tabela `sala`
 --
 
-CREATE TABLE `lab` (
-  `id_lab` int(11) NOT NULL,
-  `numlab` int(3) NOT NULL,
-  `softwares` char(40) NOT NULL,
-  `npcs` int(3) NOT NULL
+CREATE TABLE `sala` (
+  `id_sala` int(11) NOT NULL,
+  `numsala` int(3) NOT NULL,
+  `nact` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `lab_reservas`
+-- Estrutura para tabela `sala_reservas`
 --
 
-CREATE TABLE `lab_reservas` (
-  `id_lab` int(11) NOT NULL,
+CREATE TABLE `sala_reservas` (
+  `id_sala` int(11) NOT NULL,
   `id_reserva` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -53,7 +52,7 @@ CREATE TABLE `lab_reservas` (
 
 CREATE TABLE `reservas` (
   `id_reserva` int(11) NOT NULL,
-  `qtdalunos` int(3) NOT NULL,
+  `qtdlugares` int(3) NOT NULL,
   `datareserva` date NOT NULL,
   `horarioinicial` time(5) NOT NULL,
   `horariofinal` time(5) NOT NULL
@@ -68,9 +67,7 @@ CREATE TABLE `reservas` (
 CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nome` char(30) NOT NULL,
-  `curso` char(20) NOT NULL,
   `email` char(70) NOT NULL,
-  `materia` char(40) NOT NULL,
   `senha` char(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -79,17 +76,17 @@ CREATE TABLE `user` (
 --
 
 --
--- Índices de tabela `lab`
+-- Índices de tabela `sala`
 --
-ALTER TABLE `lab`
-  ADD PRIMARY KEY (`id_lab`);
+ALTER TABLE `sala`
+  ADD PRIMARY KEY (`id_sala`);
 
 --
--- Índices de tabela `lab_reservas`
+-- Índices de tabela `sala_reservas`
 --
-ALTER TABLE `lab_reservas`
+ALTER TABLE `sala_reservas`
   ADD KEY `id_reserva` (`id_reserva`),
-  ADD KEY `id_lab` (`id_lab`);
+  ADD KEY `id_sala` (`id_sala`);
 
 --
 -- Índices de tabela `reservas`
@@ -108,10 +105,10 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT de tabela `lab`
+-- AUTO_INCREMENT de tabela `sala`
 --
-ALTER TABLE `lab`
-  MODIFY `id_lab` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `sala`
+  MODIFY `id_sala` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `reservas`
