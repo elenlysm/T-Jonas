@@ -91,8 +91,8 @@ $resultreservas = $conn->query($sql);
                     <h5 class="text-center mb-3">Reserve um laboratório</h5>
                     <form action="reservas.php" method="POST">
                         <div class="mb-3">
-                            <label for="qtdalunos" class="form-label">Insira a quantidade de alunos:</label>
-                            <input type="text" class="form-control" name="qtdalunos" required>
+                            <label for="qtdacento" class="form-label">Insira a quantidade de acentos necessários:</label>
+                            <input type="text" class="form-control" name="qtdacento" required>
                         </div>
                         <div class="mb-3">
                             <label for="datareserva" class="form-label">Data:</label>
@@ -111,14 +111,14 @@ $resultreservas = $conn->query($sql);
                     </form>
                 </div>
                 <div class="card p-3 mb-4">
-                    <h5 class="text-center mb-3">Laboratórios disponíveis</h5>
+                    <h5 class="text-center mb-3">Salas disponíveis</h5>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead class="table-warning">
                                 <tr>
-                                    <th>Laboratório</th>
+                                    <th>Sala</th>
                                     <th>Softwares</th>
-                                    <th>Nº de Computadores</th>
+                                    <th>Nº de acentos/th>
                                     <th>Reservar</th>
                                 </tr>
                             </thead>
